@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lic. Melanie Chaffittelli - Psicóloga Clínica</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            // CHANGE 2: Update Tailwind to use your new fonts
+            fontFamily: {
+              // Sets Montserrat as the default font for the whole site
+              sans: ["Montserrat", "sans-serif"],
+              // Creates a utility class 'font-script' for Bachelorette
+              script: ["Bachelorette", "cursive"],
+            },
+            colors: {
+              neutral: {
+                950: "#FFF4EC",
+              },
+              bg: {
+                warm: "#FFF4EC",
+              },
+              rose: {
+                50: "#FDF4F5",
+                100: "#FBE6E8",
+                200: "#F6C5C9",
+                300: "#EFA1A6",
+                400: "#E7888D",
+                500: "#CF6D73",
+                600: "#B55358",
+                900: "#4A2B2D",
+              },
+            },
+            keyframes: {
+              slideUp: {
+                "0%": { transform: "translateY(100%)" },
+                "100%": { transform: "translateY(0)" },
+              },
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+            },
+            animation: {
+              slideUp: "slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+              fadeIn: "fadeIn 0.6s ease-out forwards",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* CHANGE 3: Define the custom Bachelorette font */
+      @font-face {
+        font-family: "Bachelorette";
+        /* This path assumes you put the file in /public/fonts/ */
+        src: url("/assets/fonts/Bachelorette.woff2") format("woff2"),
+          url("/assets/fonts/Bachelorette.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      body {
+        font-family: "Montserrat", sans-serif; /* Updates default */
+        background-color: #fff4ec;
+        color: #4a2b2d;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "react/": "https://aistudiocdn.com/react@^19.2.0/",
+          "react": "https://aistudiocdn.com/react@^19.2.0",
+          "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+          "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
+          "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+          "gsap": "https://esm.sh/gsap@3.12.5",
+          "gsap/ScrollTrigger": "https://esm.sh/gsap@3.12.5/ScrollTrigger",
+          "@gsap/react": "https://esm.sh/@gsap/react@2.1.0?external=react,react-dom,gsap",
+          "gsap/": "https://aistudiocdn.com/gsap@^3.13.0/"
+        }
+      }
+    </script>
+    <link rel="stylesheet" href="/index.css" />
+  </head>
+  <body class="bg-bg-warm text-rose-900">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
