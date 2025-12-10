@@ -55,7 +55,7 @@ const Header: React.FC = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay - FIXED SHEET STYLE */}
+      {/* Mobile Menu Overlay */}
       {isMobileMenuOpen && (
         <div className="z-[60] fixed inset-0 h-dvh">
           {/* Backdrop */}
