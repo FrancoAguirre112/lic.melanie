@@ -2,6 +2,8 @@
 <html lang="es" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
+
+    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lic. Melanie Chaffittelli - Psicóloga Clínica</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,11 +19,8 @@
       tailwind.config = {
         theme: {
           extend: {
-            // CHANGE 2: Update Tailwind to use your new fonts
             fontFamily: {
-              // Sets Montserrat as the default font for the whole site
               sans: ["Montserrat", "sans-serif"],
-              // Creates a utility class 'font-script' for Bachelorette
               script: ["Bachelorette", "cursive"],
             },
             colors: {
@@ -61,10 +60,8 @@
       };
     </script>
     <style>
-      /* CHANGE 3: Define the custom Bachelorette font */
       @font-face {
         font-family: "Bachelorette";
-        /* This path assumes you put the file in /public/fonts/ */
         src: url("/assets/fonts/Bachelorette.woff2") format("woff2"),
           url("/assets/fonts/Bachelorette.ttf") format("truetype");
         font-weight: normal;
@@ -72,7 +69,7 @@
       }
 
       body {
-        font-family: "Montserrat", sans-serif; /* Updates default */
+        font-family: "Montserrat", sans-serif;
         background-color: #fff4ec;
         color: #4a2b2d;
         -webkit-font-smoothing: antialiased;
