@@ -1,51 +1,62 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Milestone } from "../types";
 import {
   Building2,
   GraduationCap,
   Briefcase,
   Users,
-  Quote,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Register ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
 
-// STRICTLY PROFESSIONAL DATA
-const milestones: Milestone[] = [
+// --- DATA: STRICTLY PROFESSIONAL LISTS ---
+interface ExtendedMilestone extends Omit<Milestone, "description"> {
+  description: string | string[];
+}
+
+const milestones: ExtendedMilestone[] = [
   {
     id: "1",
-    title: "Inicios Institucionales",
-    period: "Voluntariado y Práctica",
+    title: "Inicios y Voluntariado",
+    period: "Fundación",
     description:
-      "Práctica profesional en el Hospital Italiano de Buenos Aires (Internación pediátrica) y en AEDIN (Rehabilitación de trastornos neurológicos).",
+      "Inicié mi recorrido profesional como voluntaria en el Hospital Italiano de Buenos Aires, acompañando a pacientes pediátricos en internación, y en AEDIN, trabajando con niños y niñas con trastornos neurológicos.",
     icon: <Building2 className="w-5 h-5 text-white" />,
   },
   {
     id: "2",
-    title: "Ámbito Educativo",
-    period: "Inclusión Escolar",
+    title: "Educación e Inclusión",
+    period: "Experiencia en Campo",
     description:
-      "Desempeño como Maestra de Apoyo a la Inclusión en instituciones educativas. Trabajo interdisciplinario con docentes y equipos de orientación escolar.",
+      "Me desempeñé como maestra de apoyo a la inclusión en distintos colegios, acompañando procesos de aprendizaje y adaptación. Un recorrido que fortaleció mi mirada empática y flexible.",
     icon: <Users className="w-5 h-5 text-white" />,
   },
   {
     id: "3",
     title: "Formación de Posgrado",
     period: "Especialización Clínica",
-    description:
-      "Posgrado en Clínica de Adolescentes y Adultos. Especialización en Trastornos de Ansiedad. Formación en Abordaje de Adicciones y Conductas de Riesgo.",
+    // Converted to Array for line breaks
+    description: [
+      "Posgrado en Clínica de Adolescentes y Adultos",
+      "Especialización en Trastornos de Ansiedad",
+      "Formación en el Abordaje de Adicciones y Conductas de Riesgo",
+    ],
     icon: <GraduationCap className="w-5 h-5 text-white" />,
   },
   {
     id: "4",
     title: "Actividad Actual",
-    period: "Práctica Clínica",
-    description:
-      "Psicóloga Clínica en consultorio privado (presencial y virtual). Integrante del staff profesional en el Equipo Terapéutico Villa Urquiza.",
+    period: "Práctica Profesional",
+    // Converted to Array for line breaks
+    description: [
+      "Psicóloga Clínica en consultorio privado (presencial y virtual).",
+      "Integrante del staff profesional en el Equipo Terapéutico Villa Urquiza.",
+    ],
     icon: <Briefcase className="w-5 h-5 text-white" />,
   },
 ];
@@ -53,10 +64,13 @@ const milestones: Milestone[] = [
 const Experience: React.FC = () => {
   const container = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useGSAP(
     () => {
-      // 1. Text Section Animation (Fade Up)
+      // Animate Text Section
       gsap.from(textRef.current, {
         scrollTrigger: {
           trigger: textRef.current,
@@ -68,12 +82,12 @@ const Experience: React.FC = () => {
         ease: "power2.out",
       });
 
-      // 2. Timeline Animation (Staggered Cards)
+      // Animate Timeline
       const boxes = gsap.utils.toArray(".milestone-card");
       gsap.from(boxes, {
         scrollTrigger: {
-          trigger: container.current,
-          start: "top 70%",
+          trigger: timelineRef.current,
+          start: "top 75%",
           toggleActions: "play none none none",
         },
         y: 50,
@@ -88,12 +102,12 @@ const Experience: React.FC = () => {
 
   return (
     <section ref={container} id="about" className="bg-white">
-      {/* SECTION A: THE NARRATIVE (The "Why") */}
-      <div className="bg-rose-50/50 px-6 py-24">
+      {/* --- PART 1: THE STORY (VERBATIM TEXT) --- */}
+      <div className="bg-rose-50/50 px-6 py-24 transition-all duration-500 ease-in-out">
         <div ref={textRef} className="mx-auto max-w-3xl">
           <div className="mb-12 text-center">
             <h2 className="mb-2 font-bold text-rose-400 text-sm uppercase tracking-widest">
-              Mi Historia
+              Mi Recorrido
             </h2>
             <h3 className="font-light text-rose-900 text-3xl md:text-4xl">
               Más allá del consultorio
@@ -102,51 +116,124 @@ const Experience: React.FC = () => {
           </div>
 
           <div className="space-y-6 font-light text-gray-600 text-lg leading-relaxed">
+            {/* --- VISIBLE PARAGRAPH (THE HOOK) --- */}
             <p>
-              <span className="font-script font-medium text-rose-800">
-                Hola, soy Melanie.
+              <span className="font-script font-bold text-rose-900">
+                ¡Hola! Soy Melanie.
               </span>{" "}
-              Mi vocación surgió mucho antes de recibirme. Inicié mi camino
-              acompañando a niños con trastornos neurológicos. Lo que comenzó
-              como una experiencia de dar, se transformó en un aprendizaje
-              enorme:{" "}
-              <span className="italic">
+              Lic. En Psicología, especializada en Clínica de Adultos y
+              Adolescentes.
+              <br /> <br />
+              Mi vocación surgió mucho antes de recibirme. Inicié mi recorrido
+              profesional como voluntaria en el Hospital Italiano de Buenos
+              Aires, acompañando a pacientes pediátricos en internación, y en
+              AEDIN, trabajando con niños y niñas con trastornos neurológicos.
+              <br />
+              Ese contacto con el mundo de la discapacidad despertó en mí un
+              profundo interés por seguir formándome y adquirir más herramientas
+              para poder ayudar. Lo que comenzó como una experiencia de
+              acompañamiento se transformó en un aprendizaje enorme:{" "}
+              <span className="font-medium text-rose-800 italic">
                 quienes creí que iba a enseñar fueron, en realidad, quienes más
                 me enseñaron a mí.
               </span>
             </p>
+            <p></p>
 
-            {/* Pull Quote to break up text without an image */}
-            <div className="relative bg-white shadow-sm my-8 p-6 pl-8 border-rose-300 border-l-4 italic">
-              <Quote className="top-4 left-2 absolute opacity-20 w-8 h-8 text-rose-400" />
-              <p className="text-rose-800 text-xl md:text-2xl">
-                "Comprendí cuánto influyen las historias y emociones de los
-                adultos en los vínculos con sus hijos. Ese insight fue mi punto
-                de inflexión."
-              </p>
+            {/* --- HIDDEN PARAGRAPHS (THE FULL STORY) --- */}
+            <div
+              className={`overflow-hidden transition-all duration-1000 ease-in-out ${
+                isExpanded ? "max-h-[3000px] opacity-100" : "max-h-0 opacity-0"
+              }`}
+            >
+              <div className="space-y-6 pt-2">
+                <p>
+                  Esa experiencia en AEDIN me atravesó profundamente y me
+                  impulsó a continuar mi camino trabajando como maestra de apoyo
+                  a la inclusión en distintos colegios, acompañando a niños y
+                  niñas en sus procesos de aprendizaje y adaptación. Ese
+                  recorrido me permitió conocer de cerca las diferentes maneras
+                  de habitar el mundo y fortalecer mi mirada empática, paciente
+                  y flexible frente a cada historia.
+                </p>
+
+                <p>
+                  Con el tiempo, el trabajo diario con los niños me fue
+                  conectando cada vez más con las historias, las emociones y las
+                  preguntas de los adultos que los acompañaban —padres, madres y
+                  docentes—. Fui comprendiendo cuánto influyen sus propias
+                  historias y emociones en los vínculos con sus hijos, y cómo
+                  muchas de las dificultades que emergen en la infancia están
+                  profundamente ligadas a experiencias no elaboradas, mandatos,
+                  miedos y heridas de los adultos a su alrededor.
+                </p>
+
+                {/* Highlighted Insight */}
+                <div className="pl-6 border-rose-300 border-l-4 text-rose-900 italic">
+                  "Ese insight fue un punto de inflexión: comprendí que para
+                  acompañar verdaderamente a un niño también era indispensable
+                  poder acompañar a los adultos en sus propios procesos."
+                </div>
+
+                <p>
+                  Fue entonces cuando sentí la necesidad de ampliar mi campo de
+                  trabajo y dar lugar a un nuevo desafío: el acompañamiento
+                  terapéutico de jóvenes y adultos. Inicié un largo camino de
+                  formación continua, participando de diversos cursos y
+                  capacitaciones orientados al trabajo clínico. Con el tiempo,
+                  fui consolidando mi práctica y conocimientos, culminando el
+                  Posgrado en Clínica de Adolescentes y Adultos, la Formación en
+                  el Abordaje de Adicciones y Conductas de Riesgo, y la
+                  Especialización en Trastornos de Ansiedad.
+                </p>
+
+                <p>
+                  Actualmente me desempeño como Psicóloga Clínica, con un{" "}
+                  <strong className="font-medium text-rose-900">
+                    enfoque psicoanalítico flexible e integrativo
+                  </strong>
+                  , adaptado a las necesidades y singularidad de cada persona.
+                </p>
+
+                <p>
+                  Concibo el espacio terapéutico como un lugar de escucha,
+                  reflexión y transformación, donde acompañar con empatía y
+                  compromiso los procesos subjetivos, respetando los tiempos
+                  propios de cada recorrido.
+                </p>
+
+                <p>
+                  Actualmente atiendo tanto en modalidad presencial como
+                  virtual. Además, me desempeño como Psicóloga Clínica en{" "}
+                  <strong className="font-medium text-rose-900">
+                    Equipo Terapéutico Villa Urquiza
+                  </strong>
+                  , una institución orientada al trabajo interdisciplinario en
+                  salud mental.
+                </p>
+              </div>
             </div>
 
-            <p>
-              Esta experiencia me conectó profundamente con las preguntas de los
-              padres y docentes. Entendí que para acompañar verdaderamente a un
-              niño, era indispensable alojar también a los adultos en sus
-              propios procesos.
-            </p>
-
-            <p>
-              Fue entonces cuando sentí la necesidad de ampliar mi campo y
-              formarme en la clínica de jóvenes y adultos, consolidando un{" "}
-              <strong className="font-medium text-rose-800">
-                enfoque psicoanalítico flexible e integrativo
-              </strong>
-              , adaptado a la singularidad de cada historia.
-            </p>
+            {/* BUTTON */}
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="flex items-center gap-2 hover:bg-rose-100 px-6 py-2 rounded-full font-medium text-rose-500 hover:text-rose-700 text-sm uppercase tracking-widest transition-colors cursor-pointer"
+              >
+                {isExpanded ? "Leer menos" : "Leer historia completa"}
+                {isExpanded ? (
+                  <ChevronUp className="w-4 h-4" />
+                ) : (
+                  <ChevronDown className="w-4 h-4" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* SECTION B: THE TIMELINE (The "Evidence") */}
-      <div className="px-6 py-24">
+      {/* --- PART 2: THE TIMELINE (STRUCTURED DATA) --- */}
+      <div ref={timelineRef} className="bg-white px-6 py-24">
         <div className="mx-auto max-w-4xl">
           <div className="mb-16 text-center">
             <h2 className="mb-2 font-bold text-rose-400 text-sm uppercase tracking-widest">
@@ -158,7 +245,6 @@ const Experience: React.FC = () => {
           </div>
 
           <div className="relative">
-            {/* Vertical Line */}
             <div className="top-0 bottom-0 left-8 md:left-1/2 absolute bg-rose-100 w-px -translate-x-1/2 md:translate-x-0" />
 
             <div className="flex flex-col gap-12">
@@ -169,7 +255,6 @@ const Experience: React.FC = () => {
                     index % 2 === 0 ? "md:flex-row-reverse" : ""
                   } gap-8 opacity-1`}
                 >
-                  {/* Content Box */}
                   <div className="group flex-1 ml-16 md:ml-0 md:text-right">
                     <div
                       className={`p-6 rounded-2xl bg-bg-warm border border-rose-50 hover:border-rose-200 transition-all duration-300 hover:shadow-lg ${
@@ -182,18 +267,34 @@ const Experience: React.FC = () => {
                       <h4 className="mb-3 font-medium text-rose-800 text-xl">
                         {item.title}
                       </h4>
-                      <p className="font-light text-rose-600 text-sm leading-relaxed">
-                        {item.description}
-                      </p>
+
+                      {/* RENDERING LIST OR STRING */}
+                      <div className="font-light text-rose-600 text-sm leading-relaxed">
+                        {Array.isArray(item.description) ? (
+                          <ul
+                            className={`flex flex-col gap-1 mt-2 ${
+                              index % 2 === 0
+                                ? "md:items-start"
+                                : "md:items-end"
+                            }`}
+                          >
+                            {item.description.map((line, i) => (
+                              <li key={i} className="block">
+                                {line}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p>{item.description}</p>
+                        )}
+                      </div>
                     </div>
                   </div>
 
-                  {/* Icon Bubble */}
                   <div className="left-8 md:left-1/2 z-10 absolute flex justify-center items-center bg-rose-400 shadow-sm rounded-full ring-4 ring-white w-10 h-10 -translate-x-1/2">
                     {item.icon}
                   </div>
 
-                  {/* Spacer for layout balance */}
                   <div className="hidden md:block flex-1" />
                 </div>
               ))}
