@@ -19,7 +19,7 @@ const approaches = [
     id: "2",
     title: "Angustia",
     description:
-      "Un espacio para poner en palabras eso que oprime y no encuentra salida.",
+      "Un espacio para poner en palabras aquello que oprime y no encuentra salida.",
     icon: <HeartCrack className="w-8 h-8 text-rose-500" />,
   },
   {
@@ -76,8 +76,9 @@ const Works: React.FC = () => {
             Abordajes Clínicos
           </h3>
           <p className="mx-auto mt-4 max-w-xl font-light text-rose-600">
-            Trabajamos desde una perspectiva integradora, adaptando el
-            tratamiento a las necesidades singulares de cada consultante.
+            Abordamos cada proceso terapéutico desde una perspectiva
+            integradora, adaptando el tratamiento a las necesidades singulares
+            de cada paciente.
           </p>
         </div>
 

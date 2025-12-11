@@ -37,7 +37,7 @@ const About: React.FC = () => {
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="mt-0.5 w-5 h-5 text-rose-400 shrink-0" />
                   <span className="font-medium text-rose-700">
-                    Consultorios en Villa Urquiza, CABA
+                    Consultorios en Villa Urquiza y Palermo
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
