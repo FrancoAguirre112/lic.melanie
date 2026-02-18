@@ -14,7 +14,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// --- DATA: STRICTLY PROFESSIONAL LISTS ---
 interface ExtendedMilestone extends Omit<Milestone, "description"> {
   description: string | string[];
 }
@@ -40,7 +39,6 @@ const milestones: ExtendedMilestone[] = [
     id: "3",
     title: "Formación de Posgrado",
     period: "Especialización Clínica",
-    // Converted to Array for line breaks
     description: [
       "Posgrado en Clínica de Adolescentes y Adultos",
       "Especialización en Trastornos de Ansiedad",
@@ -52,7 +50,6 @@ const milestones: ExtendedMilestone[] = [
     id: "4",
     title: "Actividad Actual",
     period: "Práctica Profesional",
-    // Converted to Array for line breaks
     description: [
       "Psicóloga Clínica en consultorio privado (presencial y virtual).",
       "Integrante del staff profesional en el Equipo Terapéutico Villa Urquiza.",
@@ -102,7 +99,6 @@ const Experience: React.FC = () => {
 
   return (
     <section ref={container} id="about" className="bg-white">
-      {/* --- PART 1: THE STORY (VERBATIM TEXT) --- */}
       <div className="bg-rose-50/50 px-6 py-24 transition-all duration-500 ease-in-out">
         <div ref={textRef} className="mx-auto max-w-3xl">
           <div className="mb-12 text-center">
@@ -116,7 +112,6 @@ const Experience: React.FC = () => {
           </div>
 
           <div className="space-y-6 font-light text-gray-600 text-lg leading-relaxed">
-            {/* --- VISIBLE PARAGRAPH (THE HOOK) --- */}
             <p>
               <span className="font-script font-bold text-rose-900">
                 ¡Hola! Soy Melanie.
@@ -140,7 +135,6 @@ const Experience: React.FC = () => {
             </p>
             <p></p>
 
-            {/* --- HIDDEN PARAGRAPHS (THE FULL STORY) --- */}
             <div
               className={`overflow-hidden transition-all duration-1000 ease-in-out ${
                 isExpanded ? "max-h-[3000px] opacity-100" : "max-h-0 opacity-0"
@@ -168,7 +162,6 @@ const Experience: React.FC = () => {
                   miedos y heridas de los adultos a su alrededor.
                 </p>
 
-                {/* Highlighted Insight */}
                 <div className="pl-6 border-rose-300 border-l-4 text-rose-900 italic">
                   "Ese insight fue un punto de inflexión: comprendí que para
                   acompañar verdaderamente a un niño también era indispensable
@@ -232,7 +225,6 @@ const Experience: React.FC = () => {
         </div>
       </div>
 
-      {/* --- PART 2: THE TIMELINE (STRUCTURED DATA) --- */}
       <div ref={timelineRef} className="bg-white px-6 py-24">
         <div className="mx-auto max-w-4xl">
           <div className="mb-16 text-center">
@@ -268,7 +260,6 @@ const Experience: React.FC = () => {
                         {item.title}
                       </h4>
 
-                      {/* RENDERING LIST OR STRING */}
                       <div className="font-light text-rose-600 text-sm leading-relaxed">
                         {Array.isArray(item.description) ? (
                           <ul
