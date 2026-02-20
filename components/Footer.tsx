@@ -1,7 +1,21 @@
 import React from "react";
 import { MessageCircle, Mail, MapPin } from "lucide-react";
+import { pushToDataLayer } from "../utils/analytics";
 
 const Footer: React.FC = () => {
+  // Event handlers for tracking
+  const handleWppClick = () => {
+    pushToDataLayer("wpp", {
+      button_location: "footer",
+    });
+  };
+
+  const handleEmailClick = () => {
+    pushToDataLayer("email", {
+      button_location: "footer",
+    });
+  };
+
   return (
     <footer id="contact" className="bg-bg-warm pt-20 pb-10">
       <div className="mx-auto px-6 max-w-4xl text-center">
@@ -18,6 +32,7 @@ const Footer: React.FC = () => {
             href="https://wa.me/5491112345678"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleWppClick}
             className="flex justify-center items-center gap-2 bg-[#E7888D] hover:bg-[#CF6D73] shadow-md px-8 py-4 rounded-xl w-full md:w-auto font-medium text-white transition-all"
           >
             <MessageCircle className="fill-current w-5 h-5" />
@@ -25,6 +40,7 @@ const Footer: React.FC = () => {
           </a>
           <a
             href="mailto:lic.melaniech@gmail.com"
+            onClick={handleEmailClick}
             className="flex justify-center items-center gap-2 bg-white hover:bg-rose-100 px-8 py-4 border border-rose-200 rounded-xl w-full md:w-auto font-medium text-rose-700 transition-all"
           >
             <Mail className="w-5 h-5" />

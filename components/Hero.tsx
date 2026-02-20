@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
         delay: 0.6,
       });
     },
-    { scope: container }
+    { scope: container },
   );
 
   return (
@@ -62,8 +62,7 @@ const Hero: React.FC = () => {
 
           <div className="flex sm:flex-row flex-col justify-center lg:justify-start gap-4 mt-4 hero-element">
             <a
-              href="https://wa.me/5491112345678"
-              target="_blank"
+              href="#contact"
               rel="noopener noreferrer"
               className="flex justify-center items-center gap-2 bg-rose-400 hover:bg-rose-500 shadow-lg shadow-rose-200/50 hover:shadow-xl px-8 py-4 rounded-full font-medium text-white transition-all hover:-translate-y-1"
             >
