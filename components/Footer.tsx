@@ -16,6 +16,15 @@ const Footer: React.FC = () => {
     });
   };
 
+  // Pre-filled Email Configuration
+  const emailAddress = "lic.melaniech@gmail.com";
+  const emailSubject = "Agendar Consulta";
+  const emailBody =
+    "Hola! Me pongo en contacto a fin de coordinar una consulta. Puedo tener más información sobre los servicios y horarios de turnos disponibles?";
+
+  // Safely encode the subject and body for the URL
+  const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
   return (
     <footer id="contact" className="bg-bg-warm pt-20 pb-10">
       <div className="mx-auto px-6 max-w-4xl text-center">
@@ -39,7 +48,7 @@ const Footer: React.FC = () => {
             Enviar WhatsApp
           </a>
           <a
-            href="mailto:lic.melaniech@gmail.com"
+            href={mailtoLink}
             onClick={handleEmailClick}
             className="flex justify-center items-center gap-2 bg-white hover:bg-rose-100 px-8 py-4 border border-rose-200 rounded-xl w-full md:w-auto font-medium text-rose-700 transition-all"
           >

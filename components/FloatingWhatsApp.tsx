@@ -1,17 +1,26 @@
-import React from 'react';
-import { MessageCircle } from 'lucide-react';
+import React from "react";
+import { MessageCircle } from "lucide-react";
+import { pushToDataLayer } from "../utils/analytics";
 
 const FloatingWhatsApp: React.FC = () => {
+  // Event handler for tracking the floating button
+  const handleWppClick = () => {
+    pushToDataLayer("wpp", {
+      button_location: "floating",
+    });
+  };
+
   return (
-    <a 
+    <a
       href="https://wa.me/5491112345678"
-      target="_blank" 
+      target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-40 bg-[#E7888D] text-white p-4 rounded-full shadow-lg hover:shadow-xl hover:scale-110 hover:bg-[#CF6D73] transition-all duration-300 flex items-center justify-center group"
+      onClick={handleWppClick}
+      className="group right-6 bottom-6 z-40 fixed flex justify-center items-center bg-[#E7888D] hover:bg-[#CF6D73] shadow-lg hover:shadow-xl p-4 rounded-full text-white hover:scale-110 transition-all duration-300"
       aria-label="Contactar por WhatsApp"
     >
-      <MessageCircle className="w-7 h-7 fill-current" />
-      <span className="absolute right-full mr-4 bg-white text-gray-800 px-3 py-1 rounded-lg text-sm font-medium shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+      <MessageCircle className="fill-current w-7 h-7" />
+      <span className="right-full absolute bg-white opacity-0 group-hover:opacity-100 shadow-md mr-4 px-3 py-1 rounded-lg font-medium text-gray-800 text-sm whitespace-nowrap transition-opacity pointer-events-none">
         ¡Hablemos!
       </span>
     </a>
