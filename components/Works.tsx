@@ -3,6 +3,7 @@ import { Cloud, HeartCrack, Sunset, Activity, Sparkles } from "lucide-react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { pushToDataLayer } from "../utils/analytics";
 
 // Register Plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -111,6 +112,9 @@ const Works: React.FC = () => {
               href="https://wa.me/5491112345678"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                pushToDataLayer("wpp", { button_location: "approaches" })
+              }
               className="bg-white hover:bg-rose-50 px-6 py-2 rounded-full font-semibold text-rose-500 text-sm transition-colors"
             >
               Consultar
