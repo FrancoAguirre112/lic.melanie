@@ -10,7 +10,7 @@ interface FormData {
   reason: string;
 }
 
-const WHATSAPP_NUMBER = "5491112345678";
+const WHATSAPP_NUMBER = "5491124524091";
 const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbzSRtSTmxT6hmiNv68jQKV6dZHHmRd_GToeSd6eqxDBoeNVz9_8H_TPWFCyMwa30yNO/exec";
 
