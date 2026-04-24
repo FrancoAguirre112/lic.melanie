@@ -4,6 +4,8 @@ import { pushToDataLayer } from "../utils/analytics";
 
 interface FormData {
   fullName: string;
+  email: string;
+  phone: string;
   location: string;
   reason: string;
 }
@@ -26,6 +28,8 @@ const ContactForm: React.FC = () => {
 
   const [formData, setFormData] = useState<FormData>({
     fullName: "",
+    email: "",
+    phone: "",
     location: "",
     reason: "",
   });
@@ -74,6 +78,8 @@ const ContactForm: React.FC = () => {
 ¡Hola Melanie! Quisiera coordinar una consulta:
 ----------------------------------
 *Nombre y Apellido:* ${formData.fullName}
+*Email:* ${formData.email}
+*Teléfono:* ${formData.phone}
 *Localidad / Barrio:* ${formData.location}
 ----------------------------------
 *Motivo de la consulta:*
@@ -106,6 +112,44 @@ ${utmData.current.ad ? `\n*Vengo del anuncio:* ${utmData.current.ad}` : ""}
           onFocus={handleFocus}
           className="bg-white p-3 border border-rose-200 focus:border-rose-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-200 w-full text-rose-900 placeholder:text-rose-300"
           placeholder="Tu nombre completo"
+        />
+      </div>
+
+      <div>
+        <label
+          htmlFor="email"
+          className="block mb-1 font-medium text-rose-800 text-sm"
+        >
+          Email
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          className="bg-white p-3 border border-rose-200 focus:border-rose-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-200 w-full text-rose-900 placeholder:text-rose-300"
+          placeholder="tu@correo.com"
+        />
+      </div>
+
+      <div>
+        <label
+          htmlFor="phone"
+          className="block mb-1 font-medium text-rose-800 text-sm"
+        >
+          Teléfono
+        </label>
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          className="bg-white p-3 border border-rose-200 focus:border-rose-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-rose-200 w-full text-rose-900 placeholder:text-rose-300"
+          placeholder="Ej. 11 1234 5678"
         />
       </div>
 
