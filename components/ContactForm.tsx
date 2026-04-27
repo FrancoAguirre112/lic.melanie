@@ -88,7 +88,7 @@ ${utmData.current.ad ? `\n*Vengo del anuncio:* ${utmData.current.ad}` : ""}
     `.trim();
 
     const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    window.location.href = whatsappUrl;
   };
 
   return (
